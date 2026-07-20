@@ -1,112 +1,379 @@
-# 🌍 Bizby: Spatial Intelligence Platform
+# 🌍 Bizby – Spatial Intelligence Platform
 
-![Bizby Banner](https://img.shields.io/badge/Geospatial%20Analytics-Powered%20by%20PostGIS-f59e0b?style=for-the-badge&logo=postgresql) 
-![React](https://img.shields.io/badge/React-19.2-61DAFB?style=for-the-badge&logo=react)
-![FastAPI](https://img.shields.io/badge/FastAPI-Backend-009688?style=for-the-badge&logo=fastapi)
+<p align="center">
+  <strong>A modern GeoAI platform for real-time spatial analytics, business intelligence, and location-based decision making.</strong>
+</p>
 
-Bizby is a powerful, production-ready geospatial analytics and spatial intelligence platform. Designed to seamlessly fetch, process, and analyze location data, Bizby equips decision-makers, urban planners, and supply chain managers with actionable insights on a sleek, high-performance UI.
-
-## ✨ Core Features
-
-### 📍 Interactive Spatial Dashboard
-- **Live Map Visualization:** High-fidelity maps built with Leaflet and MapLibre GL. Supports Dark Street and Satellite modes.
-- **Bento Grid Analytics:** Instantly view statistics, query execution times, and categorical breakdowns of Points of Interest (POIs) in a selected region.
-- **Dynamic Filtering:** Filter locations on the map and data lists by Business Categories (Cafes, Tech, Healthcare, Retail, etc.) in real-time.
-- **Search History & Replay:** Automatically tracks session search history, allowing users to rapidly "replay" past spatial queries.
-
-### 🗺 Advanced PostGIS Spatial Queries
-Instead of relying strictly on client-side math, Bizby pushes the heavy lifting to the database using hardware-accelerated **GiST indexes** and PostGIS capabilities.
-- **ST_DWithin (Buffer Zone):** Find all features within an exact radius of a selected coordinate.
-- **ST_Intersects & ST_Contains:** Determine complex geographic relationships between different polygons and points.
-- **Supply Chain Analytics:** A specialized query mode that isolates facilities completely `contained` by a delivery radius versus those only `intersecting` it.
-
-### 🔄 Real-Time OSM Ingestion
-Bizby is never out-of-date. Using the **Overpass API**, Bizby dynamically scrapes OpenStreetMap (OSM) for real-world locations surrounding a user's search area. These results are parsed, standardized, and immediately inserted/updated into the PostgreSQL database before the spatial query runs.
-
-### 🤖 AI-Powered Chat Assistant
-Integrated with OpenAI, the side-panel chat assistant can contextualize spatial results, provide business insights, and answer queries about the active map region.
+<p align="center">
+  <a href="https://syedtwasti.github.io/Bizby/">
+    <img src="https://img.shields.io/badge/Live-Demo-success?style=for-the-badge" />
+  </a>
+  <img src="https://img.shields.io/badge/Frontend-React%2019%20%2B%20Vite-61DAFB?style=for-the-badge&logo=react" />
+  <img src="https://img.shields.io/badge/Backend-FastAPI-009688?style=for-the-badge&logo=fastapi" />
+  <img src="https://img.shields.io/badge/Database-PostgreSQL%20%7C%20PostGIS-336791?style=for-the-badge&logo=postgresql" />
+  <img src="https://img.shields.io/badge/GeoAI-Spatial%20Analytics-f59e0b?style=for-the-badge" />
+</p>
 
 ---
 
-## 🛠 Tech Stack
+## 🌐 Live Demo
 
-**Frontend:**
-- **React 19 & Vite:** Lightning-fast rendering and build times.
-- **Zustand:** Global state management handling map layers, UI state, and query histories.
-- **Framer Motion:** Premium micro-animations and seamless UI transitions.
-- **Leaflet & Recharts:** Core libraries for geospatial mapping and data charting.
-
-**Backend:**
-- **FastAPI:** High-performance async Python backend framework.
-- **PostgreSQL & PostGIS:** The industry standard for geospatial databases.
-- **SQLAlchemy:** ORM managing spatial columns (`Geometry`) and standardizing data structures.
+🔗 **https://syedtwasti.github.io/Bizby/**
 
 ---
 
-## 🚀 How It Works (The Pipeline)
+## 📸 Platform Preview
 
-1. **User Query:** The user inputs a location (e.g., "Islamabad") and selects a spatial rule (e.g., "Buffer Zone" at 2000m).
-2. **OSM Enrichment:** The frontend triggers the backend to query the Overpass API for real-time node and polygon data surrounding those coordinates.
-3. **Database Insertion:** The backend parses the raw OSM data (extracting categories, tags, and coordinates) and saves it into the PostGIS database.
-4. **Spatial Processing:** The FastAPI backend executes optimized PostGIS SQL queries (like `ST_DWithin`) against the freshly updated database.
-5. **Visualization:** The results (GeoJSON format) are returned to the React frontend, which instantly visualizes the boundary polygons and colored POI markers on the MapCanvas, alongside updated Bento Grid statistics.
+<p align="center">
+  <img src="image.png" width="1000" alt="Bizby Dashboard">
+</p>
 
 ---
 
-## 💻 Installation & Setup
+# 📖 Overview
 
-### 1. Database Setup
-You must have **PostgreSQL** installed along with the **PostGIS** extension.
-Create a database named `bizby`, and ensure the PostGIS extension is enabled:
+**Bizby** is a production-ready **Spatial Intelligence Platform** that combines Web GIS, spatial databases, AI-powered insights, and real-time geospatial analytics into a single interactive application.
+
+Built using **React**, **FastAPI**, **PostGIS**, and **Leaflet**, Bizby enables organizations, urban planners, logistics companies, and analysts to discover, analyze, and visualize geographic information with enterprise-grade performance.
+
+By combining OpenStreetMap data, spatial SQL, interactive dashboards, and AI-assisted analysis, Bizby transforms raw location data into actionable business intelligence.
+
+---
+
+# ✨ Key Features
+
+### 🗺 Interactive Spatial Dashboard
+
+Explore geographic data through a modern analytics interface featuring:
+
+- Interactive Leaflet maps
+- Dark & Satellite basemaps
+- Responsive Bento Grid dashboard
+- Live statistics and insights
+- Query execution metrics
+
+---
+
+### 📍 Advanced Spatial Analysis
+
+Leverage powerful **PostGIS** capabilities including:
+
+- Buffer Analysis (`ST_DWithin`)
+- Spatial Intersection (`ST_Intersects`)
+- Containment Analysis (`ST_Contains`)
+- Radius-based proximity searches
+- High-performance GiST indexing
+
+---
+
+### 🌐 Real-Time OpenStreetMap Integration
+
+Bizby automatically retrieves live Points of Interest (POIs) from **OpenStreetMap** using the **Overpass API**.
+
+Features include:
+
+- Automatic data ingestion
+- Category extraction
+- Data standardization
+- Instant database updates
+- Live spatial querying
+
+---
+
+### 📊 Business Intelligence Dashboard
+
+Visualize spatial information through:
+
+- Category breakdowns
+- Business distributions
+- Query performance metrics
+- Search history
+- Interactive analytics
+
+---
+
+### 🚚 Supply Chain Intelligence
+
+Analyze logistics networks using spatial relationships such as:
+
+- Delivery coverage
+- Facility containment
+- Service radius analysis
+- Distribution optimization
+
+---
+
+### 🤖 AI-Powered Spatial Assistant
+
+Integrated AI provides contextual insights including:
+
+- Spatial query explanations
+- Business recommendations
+- Geographic analysis
+- Map-based intelligence
+- Natural language interaction
+
+---
+
+# ⚙️ System Architecture
+
+```text
+                  User Search
+                       │
+                       ▼
+              React Dashboard (Vite)
+                       │
+              Axios API Requests
+                       │
+                       ▼
+               FastAPI Backend
+                       │
+        ┌──────────────┼──────────────┐
+        ▼              ▼              ▼
+ Overpass API      PostgreSQL      OpenAI
+(OpenStreetMap)      + PostGIS        API
+        │              │              │
+        └──────────────┼──────────────┘
+                       ▼
+             Spatial Processing Engine
+                       │
+             GeoJSON Response Layer
+                       │
+                       ▼
+          Interactive Maps & Analytics
+```
+
+---
+
+# 🔍 How Bizby Works
+
+## 1. User Search
+
+Users search for a location and define spatial analysis parameters such as search radius or business category.
+
+---
+
+## 2. Live Data Collection
+
+The backend retrieves real-time geographic information from **OpenStreetMap** through the **Overpass API**.
+
+---
+
+## 3. Data Processing
+
+Incoming data is:
+
+- Parsed
+- Standardized
+- Categorized
+- Stored inside PostgreSQL/PostGIS
+
+---
+
+## 4. Spatial Analysis
+
+FastAPI executes optimized spatial SQL queries using PostGIS functions including:
+
+- ST_DWithin
+- ST_Contains
+- ST_Intersects
+
+allowing rapid geographic analysis even on large datasets.
+
+---
+
+## 5. AI Intelligence
+
+The integrated AI assistant interprets spatial results and provides contextual business insights based on the selected region.
+
+---
+
+## 6. Interactive Visualization
+
+Results are displayed through:
+
+- Interactive maps
+- Live POI markers
+- Analytics cards
+- Charts
+- Search history
+- Spatial overlays
+
+---
+
+# 🛠 Technology Stack
+
+| Category | Technologies |
+|-----------|--------------|
+| Frontend | React 19, Vite |
+| Backend | FastAPI |
+| Database | PostgreSQL, PostGIS |
+| ORM | SQLAlchemy |
+| State Management | Zustand |
+| Mapping | Leaflet, MapLibre GL |
+| Charts | Recharts |
+| Animations | Framer Motion |
+| AI | OpenAI API |
+| Spatial Data | OpenStreetMap (Overpass API) |
+
+---
+
+# 🚀 Getting Started
+
+## Prerequisites
+
+- Python 3.10+
+- Node.js 18+
+- PostgreSQL
+- PostGIS Extension
+
+---
+
+## Database Setup
+
+Create a PostgreSQL database and enable PostGIS:
+
 ```sql
 CREATE DATABASE bizby;
+
 \c bizby;
+
 CREATE EXTENSION postgis;
 ```
 
-### 2. Backend Setup
-Navigate to the `backend/` directory, set up your Python environment, and install dependencies:
+---
+
+## Backend Installation
+
 ```bash
 cd backend
+
 python -m venv venv
-source venv/bin/activate  # On Windows use: venv\Scripts\activate
+
+# Windows
+venv\Scripts\activate
+
+# macOS/Linux
+source venv/bin/activate
+
 pip install -r requirements.txt
 ```
 
-Create a `.env` file in the `backend/` folder and add your connection string and API keys:
+Create a `.env` file:
+
 ```env
-DATABASE_URL=postgresql://postgres:yourpassword@localhost:5432/bizby
-OPENAI_API_KEY=your_openai_api_key
+DATABASE_URL=postgresql://postgres:password@localhost:5432/bizby
+
+OPENAI_API_KEY=your_api_key
 ```
 
-Run the FastAPI server:
+Run the backend:
+
 ```bash
 python main.py
 ```
-*(The API will be available at `http://localhost:8000`)*
 
-### 3. Frontend Setup
-Navigate back to the project root and install NPM packages:
-```bash
-npm install
+Backend:
+
 ```
-
-Start the Vite development server:
-```bash
-npm run dev
+http://localhost:8000
 ```
-
-Alternatively, you can just double-click the `start.bat` file at the root of the project to initialize both the frontend and backend servers simultaneously!
 
 ---
 
-## 🌐 Deployment
+## Frontend Installation
 
-The frontend of this application is pre-configured to be deployed statically to **GitHub Pages**.
-
-To deploy a production build to GitHub Pages:
 ```bash
-npm run deploy
+npm install
+
+npm run dev
 ```
 
-*Note: GitHub Pages only hosts the React UI. To enable full data-processing functionality, the Python FastAPI backend and PostGIS database must be hosted on a cloud provider (e.g., Render, Railway, AWS, or Heroku).*
+Alternatively, launch both frontend and backend together using:
+
+```bash
+start.bat
+```
+
+---
+
+# 📁 Project Structure
+
+```text
+Bizby/
+│
+├── backend/
+│   ├── api/
+│   ├── database/
+│   ├── models/
+│   ├── services/
+│   └── main.py
+│
+├── src/
+├── public/
+├── image.png
+├── package.json
+├── start.bat
+└── README.md
+```
+
+---
+
+# 🌐 Data Sources
+
+Bizby integrates multiple geospatial services including:
+
+- **OpenStreetMap**
+- **Overpass API**
+- **PostGIS**
+- **OpenAI API**
+
+---
+
+# 🚧 Future Enhancements
+
+Planned features include:
+
+- Multi-user authentication
+- Spatial machine learning models
+- Temporal GIS analytics
+- Route optimization
+- Heatmap generation
+- Geo-fencing
+- 3D map visualization
+- Cloud deployment (AWS / Azure / Railway)
+- Vector tile rendering
+- Collaborative GIS workspaces
+
+---
+
+# 💡 Potential Applications
+
+Bizby can be used across multiple industries including:
+
+- Urban Planning
+- Smart Cities
+- Retail Site Selection
+- Supply Chain Management
+- Logistics Optimization
+- Business Intelligence
+- Emergency Response
+- Government GIS
+- Real Estate Analytics
+- Environmental Monitoring
+
+---
+
+# 👨‍💻 Author
+
+**Syed Tuaha Wasti**
+
+GIS Engineer • Full Stack Developer • GeoAI & Spatial Intelligence Enthusiast
+
+---
+
+# 📄 License
+
+This project is proprietary and confidential.
+
+All rights reserved © 2026.
