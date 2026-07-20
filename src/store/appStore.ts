@@ -39,6 +39,7 @@ interface AppState {
   // Panels
   showBento: boolean;
   showAIChat: boolean;
+  selectedCategory: string;
 
   // Theme
   theme: 'dark' | 'light';
@@ -65,6 +66,7 @@ interface AppState {
   setSelectedLocation: (v: Location | null) => void;
   setShowBento: (v: boolean) => void;
   setShowAIChat: (v: boolean) => void;
+  setSelectedCategory: (v: string) => void;
   toggleTheme: () => void;
   setError: (v: string | null) => void;
   addChatMessage: (msg: ChatMessage) => void;
@@ -87,6 +89,7 @@ const initial = {
   executionTimeMs: 0,
   showBento: false,
   showAIChat: false,
+  selectedCategory: 'all',
   theme: 'dark' as const,
   searchHistory: [],
   chatMessages: [],
@@ -109,6 +112,7 @@ export const useAppStore = create<AppState>()(
         setSelectedLocation: (v) => set({ selectedLocation: v }),
         setShowBento: (v) => set({ showBento: v }),
         setShowAIChat: (v) => set({ showAIChat: v }),
+        setSelectedCategory: (v) => set({ selectedCategory: v }),
         toggleTheme: () =>
           set((s) => {
             const next = s.theme === 'dark' ? 'light' : 'dark';

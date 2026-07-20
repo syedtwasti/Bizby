@@ -52,7 +52,7 @@ export default function MapCanvas({ queryResults }: Props) {
   const [mapStyle, setMapStyle] = useState<'dark' | 'satellite'>('dark');
   const [mapReady, setMapReady] = useState(false);
 
-  const { selectedLocation, isQuerying, queryType } = useAppStore();
+  const { selectedLocation, isQuerying, queryType, selectedCategory } = useAppStore();
 
   // Initialize map once
   useEffect(() => {
@@ -177,6 +177,8 @@ export default function MapCanvas({ queryResults }: Props) {
         const props = feature.properties;
         const cat = String(props.category || 'default');
         
+        if (selectedCategory !== 'all' && cat !== selectedCategory) return;
+        
         let markerColor = CATEGORY_COLORS[cat] || CATEGORY_COLORS.default;
         if (queryType === 'supply-chain' || props.query_type === 'supply_chain') {
           if (props.layer === 'contained') markerColor = '#a855f7'; // Purple for fully contained
@@ -213,9 +215,9 @@ export default function MapCanvas({ queryResults }: Props) {
         });
       }
     });
-  }, [queryResults, queryType]);
+  }, [queryResults, queryType, selectedCategory]);
 
-  const pointCount = queryResults?.features.filter(f => f.geometry.type === 'Point').length ?? 0;
+  const pointCount = queryResults?.features.filter(f => f.geometry.type === 'Point' && (selectedCategory === 'all' || f.properties?.category === selectedCategory)).length ?? 0;
   const execTime = queryResults?.execution_time_ms ?? 0;
 
   return (

@@ -185,9 +185,8 @@ function HistoryPanel({ history }: { history: HistoryItem[] }) {
 }
 
 export function DashboardPage() {
-  const { activeQueryResults, isQuerying, queryProgress, theme, toggleTheme, showBento, overpassStatus } = useAppStore();
+  const { activeQueryResults, isQuerying, queryProgress, theme, toggleTheme, showBento, overpassStatus, selectedCategory, setSelectedCategory } = useAppStore();
   const [activeNav, setActiveNav] = useState('map');
-  const [selectedCategory, setSelectedCategory] = useState('all');
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [dbHistory, setDbHistory] = useState<HistoryItem[]>([]);
 
@@ -203,7 +202,7 @@ export function DashboardPage() {
   }, [activeNav]);
 
   const execTime = activeQueryResults?.execution_time_ms ?? 0;
-  const resultCount = activeQueryResults?.features.filter(f => f.geometry.type === 'Point').length ?? 0;
+  const resultCount = activeQueryResults?.features.filter(f => f.geometry.type === 'Point' && (selectedCategory === 'all' || f.properties?.category === selectedCategory)).length ?? 0;
 
   return (
     <div style={{ display: 'flex', height: '100vh', background: 'var(--bg0)', overflow: 'hidden' }}>

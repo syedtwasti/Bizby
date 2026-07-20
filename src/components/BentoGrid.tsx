@@ -88,9 +88,9 @@ function SupplyChainPanel({ features }: { features: { geometry: { type: string }
 }
 
 export function BentoGrid() {
-  const { selectedLocation, activeQueryResults, isQuerying, showBento, setShowBento, searchHistory } = useAppStore();
+  const { selectedLocation, activeQueryResults, isQuerying, showBento, setShowBento, searchHistory, selectedCategory } = useAppStore();
 
-  const pointFeatures = activeQueryResults?.features.filter(f => f.geometry.type === 'Point') ?? [];
+  const pointFeatures = activeQueryResults?.features.filter(f => f.geometry.type === 'Point' && (selectedCategory === 'all' || f.properties?.category === selectedCategory)) ?? [];
   const execTime = activeQueryResults?.execution_time_ms ?? 0;
 
   // Category breakdown for chart
